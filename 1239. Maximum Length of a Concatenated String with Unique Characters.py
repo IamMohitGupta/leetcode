@@ -17,3 +17,12 @@ class Solution:
                 max_len = len(a)
 
         return max_len
+
+"""
+
+Approach:
+Keep a dp that contains set with unique characters, if you and 2 words and result is not 0, that means something is duplicate.
+If result 0 then append two words OR
+Return max length
+
+"""
