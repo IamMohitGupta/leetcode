@@ -1,29 +1,25 @@
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        m = len(matrix)
-        n = len(matrix[0])
-
-        def bin_search(l, target):
-            left = 0
-            right = len(l)-1
-            while left <= right:
-                mid = (left+right)//2
-                if l[mid] == target:
-                    return True
-                elif l[mid] > target:
-                    right = mid-1
-                else:
-                    left = mid+1
-            return False
-
-        for i in range(m):
-            if matrix[i][0] <= target <= matrix[i][n-1]:
-                return bin_search(matrix[i], target)
+        rowstart = 0
+        rowend = len(matrix)-1
+        while rowstart<=rowend:
+            mid = (rowstart+rowend)//2
+            if matrix[mid][0] == target:
+                return True
+            elif matrix[mid][0]>target:
+                rowend = mid-1
+            else:
+                rowstart = mid+1
+        
+        row = rowend
+        colstart = 0
+        colend = len(matrix[0])-1
+        while colstart<=colend:
+            mid = (colstart+colend)//2
+            if matrix[row][mid] == target:
+                return True
+            elif matrix[row][mid]>target:
+                colend = mid-1
+            else:
+                colstart = mid+1
         return False
-
-"""
-
-Approach:
-Find the row where target can be found in, use binary search
-
-"""
